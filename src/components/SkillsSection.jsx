@@ -10,11 +10,16 @@ import {
   GitBranch,
   Terminal,
   Code2,
+  Sparkles,
+  Zap,
+  Layers,
+  Cpu,
+  Settings,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const skillIcons = {
-  "HTML/CSS": <FileCode2 className="w-6 h-6 text-primary" />,
+  "HTML/CSS": <FileCode2 className="w-6 h-6 text-orange-500" />,
   JavaScript: <Braces className="w-6 h-6 text-yellow-500" />,
   React: <Atom className="w-6 h-6 text-sky-500" />,
   TypeScript: <Code2 className="w-6 h-6 text-blue-600" />,
@@ -41,7 +46,33 @@ const skills = [
   { name: "VS Code", category: "tools" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = [
+  { id: "all", name: "All Skills", icon: <Layers className="w-4 h-4" /> },
+  { id: "frontend", name: "Frontend", icon: <Palette className="w-4 h-4" /> },
+  { id: "backend", name: "Backend", icon: <Server className="w-4 h-4" /> },
+  { id: "tools", name: "Tools", icon: <Settings className="w-4 h-4" /> },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -51,58 +82,130 @@ export const SkillsSection = () => {
   );
 
   return (
-    <section
-      id="skills"
-      className="py-24 px-4 relative bg-secondary/30 cursor-pointer"
-    >
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
-        </h2>
+    <section id="skills" className="py-24 px-4 relative">
+      {/* Background overlay para mejor contraste */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none" />
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12 ">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
+      <div className="container mx-auto max-w-7xl relative z-10">
+        {/* Header mejorado */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center gap-2 mb-4">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-sm font-medium text-primary/80 uppercase tracking-wider">
+              My Expertise
+            </span>
+            <Sparkles className="h-5 w-5 text-primary" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Technical{" "}
+            <span className="text-primary bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+              Skills
+            </span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Here are the technologies and tools I work with. I'm constantly
+            learning and expanding my skill set to stay up-to-date with the
+            latest industry trends and best practices.
+          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-indigo-500 mx-auto mt-6 rounded-full" />
+        </motion.div>
+
+        {/* Filtros de categorías mejorados */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
               className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-foreground hover:bg-secondary cursor-pointer"
+                "group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 capitalize font-medium",
+                activeCategory === category.id
+                  ? "bg-gradient-to-r from-primary to-indigo-500 text-white shadow-lg shadow-primary/25"
+                  : "bg-card/50 border border-border/50 text-muted-foreground hover:bg-card hover:border-primary/30 hover:text-primary"
               )}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {category}
-            </button>
+              {category.icon}
+              {category.name}
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid de skills */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          key={activeCategory}
+        >
           {filteredSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-                ease: "easeOut",
-              }}
-              whileHover={{
-                scale: 1.1,
-                boxShadow:
-                  "0 8px 20px rgba(59, 130, 246, 0.5), 0 0 15px rgba(59, 130, 246, 0.4)",
-                transition: { type: "spring", stiffness: 300, damping: 15 },
-              }}
-              className="bg-card p-6 rounded-lg shadow-md flex items-center gap-4 cursor-pointer select-none"
+              variants={cardVariants}
+              className="group relative"
             >
-              {skillIcons[skill.name] || (
-                <Code2 className="w-6 h-6 text-muted-foreground" />
-              )}
-              <h3 className="font-semibold text-lg">{skill.name}</h3>
+              {/* Card principal */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-500 p-6">
+                {/* Header de la skill */}
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 group-hover:scale-110 transition-transform duration-300">
+                    {skillIcons[skill.name] || (
+                      <Code2 className="w-6 h-6 text-muted-foreground" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors mb-2">
+                      {skill.name}
+                    </h3>
+                    <span className="px-3 py-1 text-xs font-medium bg-primary/10 border border-primary/20 rounded-full text-primary/80 capitalize">
+                      {skill.category}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Efecto de glow en hover */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Stats adicionales */}
+        <motion.div
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 border border-primary/20">
+            <div className="text-3xl font-bold text-primary mb-2">11+</div>
+            <div className="text-sm text-muted-foreground">Technologies</div>
+          </div>
+          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 border border-primary/20">
+            <div className="text-3xl font-bold text-primary mb-2">+1</div>
+            <div className="text-sm text-muted-foreground">
+              Years Experience
+            </div>
+          </div>
+          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 border border-primary/20">
+            <div className="text-3xl font-bold text-primary mb-2">3</div>
+            <div className="text-sm text-muted-foreground">Categories</div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

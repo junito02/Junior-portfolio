@@ -1,36 +1,50 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import {
+  ArrowRight,
+  ExternalLink,
+  Github,
+  Sparkles,
+  Eye,
+  Code,
+  Zap,
+} from "lucide-react";
 
 const projects = [
   {
     id: 1,
     title: "Movie App",
     description:
-      " A responsive movie app built with React, TailwindCSS, and TMDB API.",
+      "A responsive movie app built with React, TailwindCSS, and TMDB API. Features include movie search, filtering, and detailed information.",
     image: "/projects/Movies.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
+    tags: ["React", "TailwindCSS", "TMDB API"],
     demoUrl: "https://movies-app-pink-five.vercel.app/",
     githubUrl: "#",
+    category: "Web App",
+    featured: true,
   },
   {
     id: 2,
-    title: "App news",
+    title: "App News",
     description:
-      " A responsive app news built with React, TailwindCSS, news API.",
+      "A responsive news application built with React and News API. Real-time news updates with category filtering and search functionality.",
     image: "/projects/News.png",
-    tags: ["React", "TailwindCSS", "news API"],
+    tags: ["React", "TailwindCSS", "News API"],
     demoUrl: "https://app-news-one.vercel.app/",
     githubUrl: "#",
+    category: "Web App",
+    featured: false,
   },
   {
     id: 3,
     title: "E-commerce Platform",
     description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
+      "Full-featured e-commerce platform with user authentication, payment processing, and comprehensive product management.",
     image: "/projects/Store.png",
     tags: ["React", "TailwindCSS", "Supabase"],
     demoUrl: "https://ecommerce01-gules.vercel.app/",
     githubUrl: "#",
+    category: "E-commerce",
+    featured: true,
   },
 ];
 
@@ -38,18 +52,18 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.15,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 10 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: "easeOut",
     },
   },
@@ -58,86 +72,181 @@ const cardVariants = {
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Featured <span className="text-primary">Projects</span>
-        </h2>
+      {/* Background overlay para mejor contraste */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none" />
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
-        </p>
-
+      <div className="container mx-auto max-w-7xl relative z-10">
+        {/* Header mejorado */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center gap-2 mb-4">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-sm font-medium text-primary/80 uppercase tracking-wider">
+              My Work
+            </span>
+            <Sparkles className="h-5 w-5 text-primary" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Featured{" "}
+            <span className="text-primary bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Here are some of my recent projects. Each project was carefully
+            crafted with attention to detail, performance, and user experience.
+            Explore the code and live demos below.
+          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-indigo-500 mx-auto mt-6 rounded-full" />
+        </motion.div>
+
+        {/* Grid de proyectos */}
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          {projects.map((project, key) => (
+          {projects.map((project, index) => (
             <motion.div
-              key={key}
+              key={project.id}
               variants={cardVariants}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              className="group relative"
             >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+              {/* Card principal */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-500">
+                {/* Imagen con overlay */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Overlay con gradiente */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-                    <a
+                  {/* Botones de acción */}
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <motion.a
                       href={project.demoUrl}
                       target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                      className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
+                      <Eye className="h-5 w-5 text-white" />
+                    </motion.a>
+                    <motion.a
                       href={project.githubUrl}
                       target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                      className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Github size={20} />
-                    </a>
+                      <Github className="h-5 w-5 text-white" />
+                    </motion.a>
+                  </div>
+
+                  {/* Badge de categoría */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 text-xs font-medium bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full text-primary">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  {/* Badge de featured */}
+                  {project.featured && (
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full text-yellow-400 flex items-center gap-1">
+                        <Zap className="h-3 w-3" />
+                        Featured
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Contenido */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-xs font-medium bg-primary/10 border border-primary/20 rounded-full text-primary/80 hover:bg-primary/20 hover:text-primary transition-all duration-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Enlaces */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-3">
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Live Demo
+                      </a>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                      >
+                        <Code className="h-4 w-4" />
+                        Code
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Efecto de glow en hover */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
             </motion.div>
           ))}
         </motion.div>
 
-        <div className="text-center mt-12">
-          <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
-            target="_blank"
-            href="https://github.com/junito02/junito02"
-          >
-            Check My Github <ArrowRight size={16} />
-          </a>
-        </div>
+        {/* CTA Section */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-indigo-500/10 border border-primary/20">
+            <div className="text-left">
+              <h3 className="text-lg font-semibold mb-1">Want to see more?</h3>
+              <p className="text-sm text-muted-foreground">
+                Check out my GitHub for more projects
+              </p>
+            </div>
+            <a
+              className="cosmic-button group flex items-center gap-2"
+              target="_blank"
+              href="https://github.com/junito02/junito02"
+            >
+              View GitHub
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
