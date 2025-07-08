@@ -7,7 +7,7 @@ const projects = [
     title: "Movie App",
     description:
       " A responsive movie app built with React, TailwindCSS, and TMDB API.",
-    image: "/projects/project01.png",
+    image: "/projects/Movies.png",
     tags: ["React", "TailwindCSS", "Supabase"],
     demoUrl: "https://movies-app-pink-five.vercel.app/",
     githubUrl: "#",
@@ -17,7 +17,7 @@ const projects = [
     title: "App news",
     description:
       " A responsive app news built with React, TailwindCSS, news API.",
-    image: "/projects/project02.png",
+    image: "/projects/News.png",
     tags: ["React", "TailwindCSS", "news API"],
     demoUrl: "https://app-news-one.vercel.app/",
     githubUrl: "#",
@@ -27,7 +27,7 @@ const projects = [
     title: "E-commerce Platform",
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project03.png",
+    image: "/projects/Store.png",
     tags: ["React", "TailwindCSS", "Supabase"],
     demoUrl: "https://ecommerce01-gules.vercel.app/",
     githubUrl: "#",
