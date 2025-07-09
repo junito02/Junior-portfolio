@@ -6,6 +6,8 @@ export const StarBackground = () => {
     width: typeof window !== "undefined" ? window.innerWidth : 1920,
     height: typeof window !== "undefined" ? window.innerHeight : 1080,
   });
+  // Nuevo: key para reiniciar meteors al cambiar dark mode
+  const [meteorKey, setMeteorKey] = useState(0);
 
   // Memoize stars generation to avoid recalculation on every render
   const stars = useMemo(() => {
@@ -28,26 +30,22 @@ export const StarBackground = () => {
     return newStars;
   }, [windowSize.width, windowSize.height]);
 
-  // Memoize meteors generation
+  // Memoize meteors generation, pero ahora depende de meteorKey
   const meteors = useMemo(() => {
-    if (!isDarkMode) return [];
-
     const numberOfMeteors = 3; // Reduced number
     const newMeteors = [];
-
     for (let i = 0; i < numberOfMeteors; i++) {
       newMeteors.push({
         id: i,
         size: Math.random() * 1.5 + 0.5, // Reduced size
         x: Math.random() * 100,
         y: Math.random() * 20,
-        delay: Math.random() * 10, // Reduced delay
+        delay: Math.random() * 1.5, // Delay bajo para animación instantánea
         animationDuration: Math.random() * 2 + 4, // Reduced duration
       });
     }
-
     return newMeteors;
-  }, [isDarkMode]);
+  }, [meteorKey, windowSize.width, windowSize.height]);
 
   const checkTheme = useCallback(() => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -96,6 +94,13 @@ export const StarBackground = () => {
     };
   }, [checkTheme, handleResize]);
 
+  // Nuevo: reiniciar meteors cada vez que se activa dark mode
+  useEffect(() => {
+    if (isDarkMode) {
+      setMeteorKey((k) => k + 1);
+    }
+  }, [isDarkMode]);
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {/* Dark mode gradient background */}
@@ -137,21 +142,22 @@ export const StarBackground = () => {
       ))}
 
       {/* Optimized meteors rendering */}
-      {meteors.map((meteor) => (
-        <div
-          key={meteor.id}
-          className="meteor animate-meteor"
-          style={{
-            width: meteor.size * 40 + "px", // Reduced size multiplier
-            height: meteor.size * 1.5 + "px", // Reduced height
-            left: meteor.x + "%",
-            top: meteor.y + "%",
-            animationDelay: meteor.delay + "s",
-            animationDuration: meteor.animationDuration + "s",
-            willChange: "transform", // Optimize for animation
-          }}
-        />
-      ))}
+      {isDarkMode &&
+        meteors.map((meteor) => (
+          <div
+            key={meteor.id + "-" + meteorKey}
+            className="meteor animate-meteor"
+            style={{
+              width: meteor.size * 40 + "px", // Reduced size multiplier
+              height: meteor.size * 1.5 + "px", // Reduced height
+              left: meteor.x + "%",
+              top: meteor.y + "%",
+              animationDelay: meteor.delay + "s",
+              animationDuration: meteor.animationDuration + "s",
+              willChange: "transform", // Optimize for animation
+            }}
+          />
+        ))}
     </div>
   );
 };

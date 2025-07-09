@@ -14,26 +14,28 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import React from "react";
 
-export const ContactSection = () => {
+const ContactSectionComponent = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      setTimeout(() => {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        setIsSubmitting(false);
+      }, 1500);
+    },
+    [toast]
+  );
 
   const containerVariants = {
     hidden: {},
@@ -55,6 +57,9 @@ export const ContactSection = () => {
       },
     },
   };
+
+  // Detectar si es mobile para limitar animaciones
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <section id="contact" className="py-24 px-4 relative">
@@ -116,6 +121,8 @@ export const ContactSection = () => {
               <motion.a
                 href="mailto:Junioralejandrotiburcio@gmail.com"
                 className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50"
+                whileHover={!isMobile ? { scale: 1.03 } : {}}
+                whileTap={!isMobile ? { scale: 0.97 } : {}}
               >
                 <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20">
                   <Mail className="h-6 w-6 text-primary" />
@@ -129,7 +136,11 @@ export const ContactSection = () => {
               </motion.a>
 
               {/* Location */}
-              <motion.div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50">
+              <motion.div
+                className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50"
+                whileHover={!isMobile ? { scale: 1.03 } : {}}
+                whileTap={!isMobile ? { scale: 0.97 } : {}}
+              >
                 <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
@@ -142,7 +153,11 @@ export const ContactSection = () => {
               </motion.div>
 
               {/* Availability */}
-              <motion.div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50">
+              <motion.div
+                className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50"
+                whileHover={!isMobile ? { scale: 1.03 } : {}}
+                whileTap={!isMobile ? { scale: 0.97 } : {}}
+              >
                 <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20">
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
@@ -166,8 +181,8 @@ export const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={!isMobile ? { scale: 1.1, y: -2 } : {}}
+                  whileTap={!isMobile ? { scale: 0.95 } : {}}
                 >
                   <Linkedin className="h-5 w-5 text-primary" />
                 </motion.a>
@@ -176,8 +191,8 @@ export const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={!isMobile ? { scale: 1.1, y: -2 } : {}}
+                  whileTap={!isMobile ? { scale: 0.95 } : {}}
                 >
                   <Twitter className="h-5 w-5 text-primary" />
                 </motion.a>
@@ -186,8 +201,8 @@ export const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={!isMobile ? { scale: 1.1, y: -2 } : {}}
+                  whileTap={!isMobile ? { scale: 0.95 } : {}}
                 >
                   <Instagram className="h-5 w-5 text-primary" />
                 </motion.a>
@@ -196,8 +211,8 @@ export const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={!isMobile ? { scale: 1.1, y: -2 } : {}}
+                  whileTap={!isMobile ? { scale: 0.95 } : {}}
                 >
                   <Twitch className="h-5 w-5 text-primary" />
                 </motion.a>
@@ -206,8 +221,8 @@ export const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={!isMobile ? { scale: 1.1, y: -2 } : {}}
+                  whileTap={!isMobile ? { scale: 0.95 } : {}}
                 >
                   <Github className="h-5 w-5 text-primary" />
                 </motion.a>
@@ -215,88 +230,81 @@ export const ContactSection = () => {
             </div>
           </motion.div>
 
-          {/* Formulario */}
-          <motion.div className="relative" variants={itemVariants}>
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50 p-8">
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <Send className="h-6 w-6 text-primary" />
-                Send a Message
-              </h3>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-semibold mb-3"
-                  >
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
-                    placeholder="Enter your name..."
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold mb-3"
-                  >
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
-                    placeholder="Enter your email..."
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-semibold mb-3"
-                  >
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="cosmic-button w-full flex items-center justify-center gap-2 group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+          {/* Formulario de contacto */}
+          <motion.div
+            className="bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-md border border-border/50 rounded-2xl p-8 shadow-lg shadow-primary/10 relative"
+            variants={itemVariants}
+          >
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-semibold mb-3"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </motion.button>
-              </form>
-            </div>
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold mb-3"
+                >
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold mb-3"
+                >
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 resize-none"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
 
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                className="cosmic-button w-full flex items-center justify-center gap-2 group"
+                whileHover={!isMobile ? { scale: 1.02 } : {}}
+                whileTap={!isMobile ? { scale: 0.98 } : {}}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </motion.button>
+            </form>
             {/* Efecto de glow en hover */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-blue-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
           </motion.div>
@@ -306,4 +314,4 @@ export const ContactSection = () => {
   );
 };
 
-export default ContactSection;
+export const ContactSection = React.memo(ContactSectionComponent);

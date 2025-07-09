@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import {
   FileCode2,
@@ -17,6 +17,7 @@ import {
   Settings,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import React from "react";
 
 const skillIcons = {
   "HTML/CSS": <FileCode2 className="w-6 h-6 text-orange-500" />,
@@ -74,12 +75,23 @@ const cardVariants = {
   },
 };
 
-export const SkillsSection = () => {
+const SkillsSectionComponent = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
+  // useMemo para evitar recalcular skills filtrados
+  const filteredSkills = useMemo(
+    () =>
+      skills.filter(
+        (skill) => activeCategory === "all" || skill.category === activeCategory
+      ),
+    [activeCategory]
   );
+
+  // useCallback para estabilizar el handler
+  const handleCategory = useCallback((id) => setActiveCategory(id), []);
+
+  // Detectar si es mobile para limitar animaciones
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <section id="skills" className="py-24 px-4 relative">
@@ -127,15 +139,15 @@ export const SkillsSection = () => {
           {categories.map((category) => (
             <motion.button
               key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => handleCategory(category.id)}
               className={cn(
                 "group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 capitalize font-medium",
                 activeCategory === category.id
                   ? "bg-gradient-to-r from-primary to-blue-500 text-white shadow-lg shadow-primary/25"
                   : "bg-card/50 border border-border/50 text-muted-foreground hover:bg-card hover:border-primary/30 hover:text-primary"
               )}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={!isMobile ? { scale: 1.05 } : {}}
+              whileTap={!isMobile ? { scale: 0.95 } : {}}
             >
               {category.icon}
               {category.name}
@@ -198,12 +210,12 @@ export const SkillsSection = () => {
           <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
             <div className="text-3xl font-bold text-primary mb-2">+1</div>
             <div className="text-sm text-muted-foreground">
-              Years Experience
+              Year of experience
             </div>
           </div>
           <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
-            <div className="text-3xl font-bold text-primary mb-2">3</div>
-            <div className="text-sm text-muted-foreground">Categories</div>
+            <div className="text-3xl font-bold text-primary mb-2">Always</div>
+            <div className="text-sm text-muted-foreground">Learning</div>
           </div>
         </motion.div>
       </div>
@@ -211,4 +223,4 @@ export const SkillsSection = () => {
   );
 };
 
-export default SkillsSection;
+export const SkillsSection = React.memo(SkillsSectionComponent);

@@ -8,8 +8,9 @@ import {
   Code,
   Zap,
 } from "lucide-react";
+import React, { useMemo } from "react";
 
-const projects = [
+const projectsData = [
   {
     id: 1,
     title: "Movie App",
@@ -69,7 +70,12 @@ const cardVariants = {
   },
 };
 
-export const ProjectsSection = () => {
+const ProjectsSectionComponent = () => {
+  // useMemo para evitar recalcular proyectos
+  const projects = useMemo(() => projectsData, []);
+  // Detectar si es mobile para limitar animaciones
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <section id="projects" className="py-24 px-4 relative">
       {/* Background overlay para mejor contraste */}
@@ -126,7 +132,9 @@ export const ProjectsSection = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 bg-blue-100"
+                    loading="lazy"
+                    style={{ background: "#dbeafe" }}
                   />
                   {/* Overlay con gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -137,8 +145,8 @@ export const ProjectsSection = () => {
                       href={project.demoUrl}
                       target="_blank"
                       className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={!isMobile ? { scale: 1.1 } : {}}
+                      whileTap={!isMobile ? { scale: 0.95 } : {}}
                     >
                       <Eye className="h-5 w-5 text-white" />
                     </motion.a>
@@ -146,8 +154,8 @@ export const ProjectsSection = () => {
                       href={project.githubUrl}
                       target="_blank"
                       className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={!isMobile ? { scale: 1.1 } : {}}
+                      whileTap={!isMobile ? { scale: 0.95 } : {}}
                     >
                       <Github className="h-5 w-5 text-white" />
                     </motion.a>
@@ -198,26 +206,23 @@ export const ProjectsSection = () => {
                       <a
                         href={project.demoUrl}
                         target="_blank"
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline flex items-center gap-1"
                       >
-                        <ExternalLink className="h-4 w-4" />
-                        Live Demo
+                        Demo <ExternalLink className="h-4 w-4" />
                       </a>
                       <a
                         href={project.githubUrl}
                         target="_blank"
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary flex items-center gap-1"
                       >
-                        <Code className="h-4 w-4" />
-                        Code
+                        Code <Github className="h-4 w-4" />
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Efecto de glow en hover */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
             </motion.div>
           ))}
         </motion.div>
@@ -252,4 +257,4 @@ export const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection;
+export const ProjectsSection = React.memo(ProjectsSectionComponent);

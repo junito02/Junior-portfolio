@@ -1,5 +1,7 @@
 import { ArrowDown } from "lucide-react";
-import image from "../../public/one.webp";
+// Import principal para fallback, pero usaremos srcSet
+import imageWebp from "../../public/one.webp";
+import imageJpg from "../../public/one.jpg";
 import { motion } from "framer-motion";
 
 export const HeroSection = () => {
@@ -23,13 +25,19 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="inline-block rounded-full bg-gradient-to-br from-primary/30 to-blue-500/20 p-2 shadow-xl shadow-primary/10 mb-6"
+          className="relative inline-block rounded-full bg-gradient-to-br from-primary/30 to-blue-500/20 p-2 shadow-xl shadow-primary/10 mb-6"
         >
+          {/* Placeholder blur */}
+          <div className="absolute inset-0 w-full h-full rounded-full bg-blue-200 blur-xl z-0" />
           <img
-            className="w-[160px] h-[160px] object-cover rounded-full border-4 border-primary/60 shadow-lg shadow-primary/20 mx-auto"
-            src={image}
+            className="relative w-[160px] h-[160px] object-cover rounded-full border-4 border-primary/60 shadow-lg shadow-primary/20 mx-auto transition-opacity duration-500"
+            src={imageWebp}
+            srcSet={"/one.webp 160w, /one.jpg 160w"}
+            sizes="(max-width: 640px) 120px, (max-width: 1024px) 160px, 160px"
             alt="Portfolio Website Banner"
-            loading="lazy"
+            loading="eager"
+            style={{ background: "#bfdbfe" }} // fallback color
+            onLoad={(e) => (e.currentTarget.style.opacity = 1)}
           />
         </motion.div>
         <motion.div
