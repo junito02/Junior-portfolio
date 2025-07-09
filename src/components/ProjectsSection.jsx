@@ -93,7 +93,7 @@ export const ProjectsSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Featured{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
@@ -102,7 +102,7 @@ export const ProjectsSection = () => {
             crafted with attention to detail, performance, and user experience.
             Explore the code and live demos below.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-indigo-500 mx-auto mt-6 rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-blue-500 mx-auto mt-6 rounded-full" />
         </motion.div>
 
         {/* Grid de proyectos */}

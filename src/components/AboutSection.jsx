@@ -28,11 +28,11 @@ export const AboutSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Passionate{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
               Developer
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-indigo-500 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-blue-500 mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -55,7 +55,7 @@ export const AboutSection = () => {
                 <p className="text-muted-foreground">
                   With{" "}
                   <span className="text-primary font-semibold">
-                    2 years of experience
+                    1 year of experience
                   </span>{" "}
                   in web development, I specialize in creating responsive,
                   accessible, and performant web applications using modern
@@ -74,7 +74,7 @@ export const AboutSection = () => {
             {/* Stats simplificados */}
             <div className="grid grid-cols-2 gap-6 py-6">
               <div className="text-center p-4 rounded-xl bg-card border border-border">
-                <div className="text-2xl font-bold text-primary">2+</div>
+                <div className="text-2xl font-bold text-primary">1+</div>
                 <div className="text-sm text-muted-foreground">
                   Years Experience
                 </div>

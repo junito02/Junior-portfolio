@@ -13,7 +13,7 @@ export const HeroSection = () => {
         className="absolute top-0 left-1/2 -translate-x-1/2 z-0 w-[480px] h-[480px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle 240px at 50% 40%, rgba(99,102,241,0.25), transparent 80%)",
+            "radial-gradient(circle 240px at 50% 40%, rgba(59,130,246,0.25), transparent 80%)",
           filter: "blur(8px)",
         }}
       />
@@ -23,7 +23,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="inline-block rounded-full bg-gradient-to-br from-primary/30 to-indigo-500/20 p-2 shadow-xl shadow-primary/10 mb-6"
+          className="inline-block rounded-full bg-gradient-to-br from-primary/30 to-blue-500/20 p-2 shadow-xl shadow-primary/10 mb-6"
         >
           <img
             className="w-[160px] h-[160px] object-cover rounded-full border-4 border-primary/60 shadow-lg shadow-primary/20 mx-auto"
@@ -40,12 +40,12 @@ export const HeroSection = () => {
         >
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
             <span className="block text-white/80">Hi, I'm</span>
-            <span className="block text-transparent bg-gradient-to-r from-primary to-indigo-500 bg-clip-text animate-fade-in-delay-1">
+            <span className="block text-transparent bg-gradient-to-r from-primary to-blue-500 bg-clip-text animate-fade-in-delay-1">
               Junior Alejandro
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-delay-2">
+          <p className="text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto animate-fade-in-delay-2 leading-relaxed font-medium">
             Passionate about learning and growing in the world of technology.
             Specializing in React, I love creating interactive and efficient
             interfaces. I'm always seeking new challenges and opportunities to

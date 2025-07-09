@@ -67,7 +67,7 @@ export const Footer = () => {
             {/* Botón de scroll to top mejorado */}
             <motion.button
               onClick={scrollToTop}
-              className="group p-3 rounded-full bg-gradient-to-r from-primary/10 to-indigo-500/10 border border-primary/20 hover:border-primary/40 hover:from-primary/20 hover:to-indigo-500/20 transition-all duration-300"
+              className="group p-3 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 hover:border-primary/40 hover:from-primary/20 hover:to-blue-500/20 transition-all duration-300"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
             >

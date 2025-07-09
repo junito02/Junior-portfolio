@@ -104,7 +104,7 @@ export const SkillsSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Technical{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
               Skills
             </span>
           </h2>
@@ -113,7 +113,7 @@ export const SkillsSection = () => {
             learning and expanding my skill set to stay up-to-date with the
             latest industry trends and best practices.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-indigo-500 mx-auto mt-6 rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-blue-500 mx-auto mt-6 rounded-full" />
         </motion.div>
 
         {/* Filtros de categorías mejorados */}
@@ -131,7 +131,7 @@ export const SkillsSection = () => {
               className={cn(
                 "group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 capitalize font-medium",
                 activeCategory === category.id
-                  ? "bg-gradient-to-r from-primary to-indigo-500 text-white shadow-lg shadow-primary/25"
+                  ? "bg-gradient-to-r from-primary to-blue-500 text-white shadow-lg shadow-primary/25"
                   : "bg-card/50 border border-border/50 text-muted-foreground hover:bg-card hover:border-primary/30 hover:text-primary"
               )}
               whileHover={{ scale: 1.05 }}
@@ -161,7 +161,7 @@ export const SkillsSection = () => {
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-500 p-6">
                 {/* Header de la skill */}
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 group-hover:scale-110 transition-transform duration-300">
                     {skillIcons[skill.name] || (
                       <Code2 className="w-6 h-6 text-muted-foreground" />
                     )}
@@ -178,7 +178,7 @@ export const SkillsSection = () => {
               </div>
 
               {/* Efecto de glow en hover */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
             </motion.div>
           ))}
         </motion.div>
@@ -191,17 +191,17 @@ export const SkillsSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 border border-primary/20">
+          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
             <div className="text-3xl font-bold text-primary mb-2">11+</div>
             <div className="text-sm text-muted-foreground">Technologies</div>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 border border-primary/20">
+          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
             <div className="text-3xl font-bold text-primary mb-2">+1</div>
             <div className="text-sm text-muted-foreground">
               Years Experience
             </div>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 border border-primary/20">
+          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
             <div className="text-3xl font-bold text-primary mb-2">3</div>
             <div className="text-sm text-muted-foreground">Categories</div>
           </div>

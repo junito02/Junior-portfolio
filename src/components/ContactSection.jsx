@@ -79,7 +79,7 @@ export const ContactSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Get In{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
+            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
@@ -88,7 +88,7 @@ export const ContactSection = () => {
             out. I'm always open to discussing new opportunities and exciting
             projects.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-indigo-500 mx-auto mt-6 rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-blue-500 mx-auto mt-6 rounded-full" />
         </motion.div>
 
         <motion.div
@@ -117,7 +117,7 @@ export const ContactSection = () => {
                 href="mailto:Junioralejandrotiburcio@gmail.com"
                 className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50"
               >
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -130,7 +130,7 @@ export const ContactSection = () => {
 
               {/* Location */}
               <motion.div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -143,7 +143,7 @@ export const ContactSection = () => {
 
               {/* Availability */}
               <motion.div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20">
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -165,7 +165,7 @@ export const ContactSection = () => {
                   href="https://www.linkedin.com/in/junior-alejandro-836684344/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
+                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -175,7 +175,7 @@ export const ContactSection = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
+                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -185,7 +185,7 @@ export const ContactSection = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
+                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -195,7 +195,7 @@ export const ContactSection = () => {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
+                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -205,7 +205,7 @@ export const ContactSection = () => {
                   href="https://github.com/junito02/junito02"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-indigo-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
+                  className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/20 hover:border-primary/40 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -298,7 +298,7 @@ export const ContactSection = () => {
             </div>
 
             {/* Efecto de glow en hover */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-indigo-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-blue-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
           </motion.div>
         </motion.div>
       </div>

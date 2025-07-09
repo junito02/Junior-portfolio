@@ -1,75 +1,91 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check if device is mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640); // 640px is the 'sm' breakpoint in Tailwind
-    };
+    setMounted(true);
 
-    // Initial check
-    checkMobile();
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
 
-    // Add event listener for window resize
-    window.addEventListener("resize", checkMobile);
-
-    // Cleanup
-    return () => window.removeEventListener("resize", checkMobile);
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    }
   }, []);
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-
-    if (isMobile) {
-      // Force dark mode on mobile
-      document.documentElement.classList.add("dark");
-      setIsDarkMode(true);
-    } else {
-      // Normal theme behavior for desktop
-      if (storedTheme === "dark") {
-        setIsDarkMode(true);
-        document.documentElement.classList.add("dark");
-      } else {
-        localStorage.setItem("theme", "light");
-        setIsDarkMode(false);
-        document.documentElement.classList.remove("dark");
-      }
-    }
-  }, [isMobile]);
-
   const toggleTheme = () => {
-    if (isMobile) return; // Prevent theme toggle on mobile
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
 
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
+    if (newTheme) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   };
 
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="fixed top-5 right-5 z-50 p-3 rounded-xl bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20">
+        <div className="w-6 h-6" />
+      </div>
+    );
+  }
+
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
       className={cn(
-        "fixed top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-        "focus:outline-none hover:bg-primary/10 cursor-pointer",
-        isMobile ? "hidden" : "block" // Hide button on mobile
+        "fixed top-5 right-5 z-50 p-3 rounded-xl transition-all duration-300 cursor-pointer",
+        "bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20",
+        "hover:border-primary/40 hover:from-primary/20 hover:to-blue-500/20",
+        "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background",
+        "shadow-lg shadow-primary/10"
       )}
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
     >
-      {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-300" />
-      ) : (
-        <Moon className="h-6 w-6 text-blue-900" />
-      )}
-    </button>
+      <AnimatePresence mode="wait">
+        {isDarkMode ? (
+          <motion.div
+            key="sun"
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 90, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Sun className="h-6 w-6 text-yellow-400" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="moon"
+            initial={{ rotate: 90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: -90, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Moon className="h-6 w-6 text-blue-600" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
 };
