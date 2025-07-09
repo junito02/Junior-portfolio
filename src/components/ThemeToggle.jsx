@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const ThemeToggle = () => {
+export const ThemeToggle = ({ small = false }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -40,28 +40,27 @@ export const ThemeToggle = () => {
 
   // Prevent hydration mismatch
   if (!mounted) {
-    return (
-      <div className="fixed top-5 right-5 z-50 p-3 rounded-xl bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20">
-        <div className="w-6 h-6" />
-      </div>
-    );
+    return null;
   }
 
   return (
     <motion.button
       onClick={toggleTheme}
       className={cn(
-        "fixed top-5 right-5 z-50 p-3 rounded-xl transition-all duration-300 cursor-pointer",
+        small
+          ? "p-2 rounded-md min-w-[40px] min-h-[40px] flex items-center justify-center"
+          : "p-2 rounded-lg",
+        "transition-all duration-300 cursor-pointer",
         "bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20",
         "hover:border-primary/40 hover:from-primary/20 hover:to-blue-500/20",
         "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background",
-        "shadow-lg shadow-primary/10"
+        "shadow-md shadow-primary/10"
       )}
-      whileHover={{ scale: 1.05, y: -2 }}
+      whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
     >
       <AnimatePresence mode="wait">
         {isDarkMode ? (
@@ -72,7 +71,11 @@ export const ThemeToggle = () => {
             exit={{ rotate: 90, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <Sun className="h-6 w-6 text-yellow-400" />
+            <Sun
+              className={
+                small ? "h-6 w-6 text-yellow-400" : "h-5 w-5 text-yellow-400"
+              }
+            />
           </motion.div>
         ) : (
           <motion.div
@@ -82,7 +85,11 @@ export const ThemeToggle = () => {
             exit={{ rotate: -90, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <Moon className="h-6 w-6 text-blue-600" />
+            <Moon
+              className={
+                small ? "h-6 w-6 text-blue-600" : "h-5 w-5 text-blue-600"
+              }
+            />
           </motion.div>
         )}
       </AnimatePresence>

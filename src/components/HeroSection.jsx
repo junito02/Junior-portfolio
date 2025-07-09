@@ -39,7 +39,9 @@ export const HeroSection = () => {
           className="space-y-6 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-md border border-border/50 rounded-2xl px-6 py-8 mx-auto shadow-lg shadow-primary/10"
         >
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-            <span className="block text-white/80">Hi, I'm</span>
+            <span className="block text-foreground dark:text-white/80">
+              Hi, I'm
+            </span>
             <span className="block text-transparent bg-gradient-to-r from-primary to-blue-500 bg-clip-text animate-fade-in-delay-1">
               Junior Alejandro
             </span>
