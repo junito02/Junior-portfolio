@@ -9,6 +9,21 @@ export const Loader = ({ onFinish }) => {
   const [show, setShow] = useState(true);
   const [typedCount, setTypedCount] = useState(0);
   const [showSub, setShowSub] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Detect dark mode
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
 
   // Typing effect optimizado
   useEffect(() => {
@@ -33,22 +48,44 @@ export const Loader = ({ onFinish }) => {
     }
   }, [typedCount, onFinish]);
 
+  // Gradientes y colores según modo
+  const bgGradient = isDarkMode
+    ? "" // No tailwind bg, usaremos un div con gradiente absoluto
+    : "bg-background/95";
+  const textGradient = isDarkMode
+    ? "bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500"
+    : "bg-gradient-to-r from-primary via-blue-400 to-fuchsia-500";
+  const subTextColor = isDarkMode ? "text-cyan-300" : "text-primary/90";
+  const spinnerColor = isDarkMode
+    ? "border-cyan-400/30 border-t-cyan-400"
+    : "border-primary/30 border-t-primary";
+
   return (
     <AnimatePresence>
       {show && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background/95"
+          className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center px-4 ${bgGradient}`}
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.8 } }}
         >
+          {/* Fondo gradiente solo para dark mode */}
+          {isDarkMode && (
+            <div
+              className="absolute inset-0 z-0"
+              style={{
+                background:
+                  "linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #312e81 100%)",
+              }}
+            />
+          )}
           {/* Fondo de estrellas */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 z-10">
             <StarBackground />
           </div>
           {/* Texto animado principal */}
           <motion.h1
-            className="relative text-4xl md:text-6xl font-extrabold text-center text-white bg-gradient-to-r from-primary via-blue-400 to-fuchsia-500 bg-clip-text drop-shadow-lg animate-glow"
+            className={`relative text-2xl md:text-6xl font-extrabold text-center text-white ${textGradient} bg-clip-text drop-shadow-lg animate-glow`}
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1.1, opacity: 1 }}
             transition={{ duration: 1 }}
@@ -83,7 +120,7 @@ export const Loader = ({ onFinish }) => {
           </motion.h1>
           {/* Subtexto Portfolio */}
           <motion.div
-            className="mt-6 text-lg md:text-2xl font-semibold text-primary/90"
+            className={`mt-6 text-base md:text-2xl font-semibold ${subTextColor}`}
             initial={{ opacity: 0, y: 10 }}
             animate={showSub ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -97,7 +134,9 @@ export const Loader = ({ onFinish }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto" />
+            <div
+              className={`w-8 h-8 md:w-10 md:h-10 border-4 ${spinnerColor} rounded-full animate-spin mx-auto`}
+            />
           </motion.div>
           <style>{`
             .glow-text {
