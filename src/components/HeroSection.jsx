@@ -1,7 +1,6 @@
 import { ArrowDown } from "lucide-react";
 // Import principal para fallback, pero usaremos srcSet
 import imageWebp from "../../public/one.webp";
-import imageJpg from "../../public/one.jpg";
 import { motion } from "framer-motion";
 
 export const HeroSection = () => {
