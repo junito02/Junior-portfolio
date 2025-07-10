@@ -288,7 +288,7 @@ const ContactSectionComponent = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="cosmic-button w-full flex items-center justify-center gap-2 group"
+                className="cosmic-button w-full flex items-center justify-center gap-2 group cursor-pointer"
                 whileHover={!isMobile ? { scale: 1.02 } : {}}
                 whileTap={!isMobile ? { scale: 0.98 } : {}}
               >

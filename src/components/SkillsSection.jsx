@@ -94,7 +94,7 @@ const SkillsSectionComponent = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
-    <section id="skills" className="py-24 px-4 relative">
+    <section id="skills" className="py-24 px-4 relative ">
       {/* Background overlay para mejor contraste */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none" />
 
@@ -116,7 +116,7 @@ const SkillsSectionComponent = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Technical{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text ">
               Skills
             </span>
           </h2>
@@ -141,7 +141,7 @@ const SkillsSectionComponent = () => {
               key={category.id}
               onClick={() => handleCategory(category.id)}
               className={cn(
-                "group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 capitalize font-medium",
+                "group flex cursor-pointer items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 capitalize font-medium",
                 activeCategory === category.id
                   ? "bg-gradient-to-r from-primary to-blue-500 text-white shadow-lg shadow-primary/25"
                   : "bg-card/50 border border-border/50 text-muted-foreground hover:bg-card hover:border-primary/30 hover:text-primary"
@@ -173,7 +173,7 @@ const SkillsSectionComponent = () => {
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-500 p-6">
                 {/* Header de la skill */}
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
                     {skillIcons[skill.name] || (
                       <Code2 className="w-6 h-6 text-muted-foreground" />
                     )}
