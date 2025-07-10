@@ -44,8 +44,11 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="space-y-6 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-md border border-border/50 rounded-2xl px-6 py-8 mx-auto shadow-lg shadow-primary/10"
+          className="space-y-6 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-md border border-border/50 rounded-[3rem] px-8 py-10 mx-auto shadow-lg shadow-primary/10 relative overflow-hidden"
         >
+          {/* Elemento decorativo para dar forma orgánica */}
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-blue-500/10 rounded-full blur-xl"></div>
+          <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-tr from-blue-500/15 to-primary/10 rounded-full blur-lg"></div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
             <span className="block text-foreground">Hi, I'm</span>
             <span className="block text-transparent bg-gradient-to-r from-primary to-blue-500 bg-clip-text animate-fade-in-delay-1">
