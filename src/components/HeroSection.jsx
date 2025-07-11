@@ -77,9 +77,7 @@ export const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
       >
-        <span className="text-sm text-muted-foreground mb-6 tracking-wide animate-pulse-subtle">
-          Scroll
-        </span>
+        {/* Solo la flecha animada, sin texto Scroll */}
         <ArrowDown className="h-6 w-6 text-primary animate-bounce" />
       </motion.div>
     </section>
