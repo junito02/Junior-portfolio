@@ -14,25 +14,74 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import React from "react";
+import emailjs from "@emailjs/browser";
 
 const ContactSectionComponent = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef(null);
 
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
       setIsSubmitting(true);
-      setTimeout(() => {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
-        setIsSubmitting(false);
-      }, 1500);
+
+      // Debug: ver qué datos se están enviando
+      const formData = new FormData(formRef.current);
+      const formDataObj = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      };
+      console.log("Datos del formulario:", formDataObj);
+
+      // Enviar auto-reply al usuario
+      const autoReplyPromise = emailjs.sendForm(
+        "service_28rm9re", // Service ID
+        "template_q20oe5v", // Template ID (auto-reply)
+        formRef.current,
+        "AwswkJUDi57i6pMpL" // Public Key
+      );
+
+      // Enviar notificación interna para ti
+      const internalNotificationPromise = emailjs.send(
+        "service_28rm9re", // Service ID
+        "template_rzrylbq", // Template ID (notificación interna)
+        {
+          from_name: formDataObj.name,
+          from_email: formDataObj.email,
+          message: formDataObj.message,
+          to_email: "junioralejandrotiburcio@gmail.com", // Tu email
+        },
+        "AwswkJUDi57i6pMpL" // Public Key
+      );
+
+      // Esperar a que ambos emails se envíen
+      Promise.all([autoReplyPromise, internalNotificationPromise]).then(
+        (results) => {
+          console.log("Ambos emails enviados exitosamente:", results);
+          toast({
+            title: "Message sent!",
+            description:
+              "Thank you for your message. I'll get back to you soon.",
+          });
+          setIsSubmitting(false);
+          formRef.current.reset();
+        },
+        (error) => {
+          console.log("Error enviando emails:", error);
+          toast({
+            title: "Error",
+            description:
+              "There was a problem sending your message. Please try again.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+        }
+      );
     },
     [toast]
   );
@@ -235,7 +284,7 @@ const ContactSectionComponent = () => {
             className="bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-md border border-border/50 rounded-2xl p-8 shadow-lg shadow-primary/10 relative"
             variants={itemVariants}
           >
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
               <div>
                 <label
                   htmlFor="name"
