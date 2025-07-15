@@ -36,7 +36,7 @@ const ContactSectionComponent = () => {
         email: formData.get("email"),
         message: formData.get("message"),
       };
-      console.log("Datos del formulario:", formDataObj);
+      // console.log("Datos del formulario:", formDataObj);
 
       // Enviar auto-reply al usuario
       const autoReplyPromise = emailjs.sendForm(
@@ -62,7 +62,7 @@ const ContactSectionComponent = () => {
       // Esperar a que ambos emails se envíen
       Promise.all([autoReplyPromise, internalNotificationPromise]).then(
         (results) => {
-          console.log("Ambos emails enviados exitosamente:", results);
+          // console.log("Ambos emails enviados exitosamente:", results);
           toast({
             title: "Message sent!",
             description:
@@ -72,7 +72,7 @@ const ContactSectionComponent = () => {
           formRef.current.reset();
         },
         (error) => {
-          console.log("Error enviando emails:", error);
+          // console.log("Error enviando emails:", error);
           toast({
             title: "Error",
             description:
