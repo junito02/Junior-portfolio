@@ -38,10 +38,9 @@ const projectsData = [
   {
     id: 3,
     title: "E-commerce Platform",
-    description:
-      "Full-featured e-commerce platform with user authentication, payment processing, and comprehensive product management.",
+    description: " E-commerce platform .",
     image: "/projects/Store.webp",
-    tags: ["React", "TailwindCSS", "Supabase"],
+    tags: ["React", "TailwindCSS", "Platzi-fake-api"],
     demoUrl: "https://ecommerce01-gules.vercel.app/",
     githubUrl: "#",
     category: "E-commerce",
