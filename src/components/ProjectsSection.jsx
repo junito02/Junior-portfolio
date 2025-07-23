@@ -40,7 +40,7 @@ const projectsData = [
     title: "E-commerce Platform",
     description: " E-commerce platform .",
     image: "/projects/Store.webp",
-    tags: ["React", "TailwindCSS", "Platzi-fake-api"],
+    tags: ["React", "TailwindCSS", "Platzi-fake-API"],
     demoUrl: "https://ecommerce01-gules.vercel.app/",
     githubUrl: "#",
     category: "E-commerce",

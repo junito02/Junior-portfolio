@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { StarBackground } from "@/components/StarBackground";
 
 const mainText = "Junior Alejandro";
-const subText = "Portfolio";
+const subText = "Portfolio";git 
 
 export const Loader = ({ onFinish }) => {
   const [show, setShow] = useState(true);
