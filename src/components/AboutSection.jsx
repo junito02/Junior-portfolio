@@ -1,7 +1,6 @@
-import { Book, Code, Database, Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowRight, Code, Database, Book } from "lucide-react";
 
-// Animaciones simplificadas para mejor performance
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
@@ -9,66 +8,43 @@ const fadeInUp = {
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
+    <section id="about" className="py-20 px-4 relative">
       <div className="container mx-auto max-w-6xl">
-        {/* Header simplificado */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="grid lg:grid-cols-2 gap-12 items-center"
+          initial="hidden"
+          whileInView="visible"
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
         >
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <span className="text-sm font-medium text-primary/80 uppercase tracking-wider">
-              About Me
-            </span>
-            <Sparkles className="h-5 w-5 text-primary" />
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Passionate{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
-              Developer
-            </span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-blue-500 mx-auto rounded-full" />
-        </motion.div>
+          {/* Contenido principal */}
+          <motion.div variants={fadeInUp}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              About <span className="text-primary">Me</span>
+            </h2>
+            <div className="space-y-4 text-lg">
+              <p className="text-muted-foreground">
+                I'm a passionate Full Stack Developer with a love for creating
+                beautiful, functional, and user-friendly web experiences.
+              </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Texto */}
-          <motion.div
-            className="space-y-8"
-            initial="hidden"
-            whileInView="visible"
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeInUp}
-          >
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold leading-tight">
-                A devoted learner who{" "}
-                <span className="text-primary">loves what he does</span>
-              </h3>
+              <p className="text-muted-foreground">
+                With{" "}
+                <span className="text-primary font-semibold ">
+                  1 year of experience
+                </span>{" "}
+                in web development, I specialize in creating responsive,
+                accessible, and performant web applications using modern
+                technologies.
+              </p>
 
-              <div className="space-y-4 text-lg leading-relaxed">
-                <p className="text-muted-foreground">
-                  With{" "}
-                  <span className="text-primary font-semibold">
-                    1 year of experience
-                  </span>{" "}
-                  in web development, I specialize in creating responsive,
-                  accessible, and performant web applications using modern
-                  technologies.
-                </p>
-
-                <p className="text-muted-foreground">
-                  I'm passionate about creating elegant solutions to complex
-                  problems, and I'm constantly learning new technologies and
-                  techniques to stay at the forefront of the ever-evolving web
-                  landscape.
-                </p>
-              </div>
+              <p className="text-muted-foreground">
+                I'm passionate about creating elegant solutions to complex
+                problems, and I'm constantly learning new technologies and
+                techniques to stay at the forefront of the ever-evolving web
+                landscape.
+              </p>
             </div>
 
             {/* Stats simplificados */}
@@ -178,7 +154,7 @@ export const AboutSection = () => {
               </div>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

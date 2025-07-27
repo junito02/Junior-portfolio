@@ -124,7 +124,7 @@ export const StarBackground = () => {
         />
       )}
 
-      {/* Optimized stars rendering */}
+      {/* Optimized stars rendering - AHORA VISIBLE EN AMBOS MODOS */}
       {stars.map((star) => (
         <div
           key={star.id}
@@ -134,14 +134,14 @@ export const StarBackground = () => {
             height: star.size + "px",
             left: star.x + "%",
             top: star.y + "%",
-            opacity: star.opacity,
+            opacity: isDarkMode ? star.opacity : star.opacity * 0.6, // Más sutil en modo claro
             animationDuration: star.animationDuration + "s",
             willChange: "opacity", // Optimize for animation
           }}
         />
       ))}
 
-      {/* Optimized meteors rendering */}
+      {/* Optimized meteors rendering - SOLO EN MODO OSCURO */}
       {isDarkMode &&
         meteors.map((meteor) => (
           <div

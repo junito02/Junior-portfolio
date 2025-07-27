@@ -77,8 +77,8 @@ const ProjectsSectionComponent = () => {
 
   return (
     <section id="projects" className="py-24 px-4 relative">
-      {/* Background overlay para mejor contraste */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none" />
+      {/* Background overlay para mejor contraste - REMOVIDO para mantener background consistente */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none" /> */}
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header mejorado */}

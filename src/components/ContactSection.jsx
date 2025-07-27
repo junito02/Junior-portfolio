@@ -112,8 +112,8 @@ const ContactSectionComponent = () => {
 
   return (
     <section id="contact" className="py-24 px-4 relative">
-      {/* Background overlay para mejor contraste */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/80 pointer-events-none" />
+      {/* Background overlay para mejor contraste - REMOVIDO para mantener background consistente */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/80 pointer-events-none" /> */}
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header mejorado */}

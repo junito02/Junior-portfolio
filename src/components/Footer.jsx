@@ -8,8 +8,8 @@ export const Footer = () => {
 
   return (
     <footer className="relative py-16 px-4 mt-24">
-      {/* Background overlay para mejor contraste */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent pointer-events-none" />
+      {/* Background overlay para mejor contraste - REMOVIDO para mantener background consistente */}
+      {/* <div className="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-transparent pointer-events-none" /> */}
 
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Línea decorativa */}
