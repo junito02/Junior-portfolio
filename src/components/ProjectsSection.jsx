@@ -31,7 +31,7 @@ const projectsData = [
     image: "/projects/News.webp",
     tags: ["React", "TailwindCSS", "News API"],
     demoUrl: "https://app-news-one.vercel.app/",
-    githubUrl: "https://github.com/junito02/Frontend-crud-mysql-express-client",
+    githubUrl: "https://github.com/junito02/App-news",
     category: "Web App",
     featured: false,
   },
