@@ -37,8 +37,9 @@ const projectsData = [
   },
   {
     id: 3,
-    title: "",
-    description: " CRUD Full Stack con React y MySQL",
+    title: "CRUD Full Stack",
+    description:
+      " A full-stack application for creating, reading, updating, and deleting data using React, TailwindCSS, Node.js, Express, and a MySQL database.",
     image: "/projects/crud.webp",
     tags: ["React", "TailwindCSS", "My-own-API", "Node js", "Express"],
     demoUrl: "https://frontend-crud-mysql-express-client.vercel.app/",
