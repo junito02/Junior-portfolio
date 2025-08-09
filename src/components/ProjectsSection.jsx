@@ -40,10 +40,10 @@ const projectsData = [
     title: "CRUD Full Stack",
     description:
       " A full-stack application for creating, reading, updating, and deleting data using React, TailwindCSS, Node.js, Express, and a MySQL database.",
-    image: "/projects/crud.webp",
+    image: "/projects/users.webp",
     tags: ["React", "TailwindCSS", "My-own-API", "Node js", "Express"],
-    demoUrl: "https://frontend-crud-mysql-express-client.vercel.app/",
-    githubUrl: "https://github.com/junito02/Frontend-crud-mysql-express-client",
+    demoUrl: "https://frontend-api-alpha.vercel.app/",
+    githubUrl: "https://github.com/junito02/Frontend-Api",
     category: "Web App-crud",
     featured: true,
   },
