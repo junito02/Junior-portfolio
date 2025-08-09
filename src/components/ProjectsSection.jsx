@@ -40,7 +40,7 @@ const projectsData = [
     title: "",
     description: " CRUD Full Stack con React y MySQL",
     image: "/projects/crud.webp",
-    tags: ["React", "TailwindCSS", "My-own-API"],
+    tags: ["React", "TailwindCSS", "My-own-API", "Node js", "Express"],
     demoUrl: "https://frontend-crud-mysql-express-client.vercel.app/",
     githubUrl: "https://github.com/junito02/Frontend-crud-mysql-express-client",
     category: "Web App-crud",
