@@ -38,7 +38,7 @@ const projectsData = [
   {
     id: 3,
     title: "",
-    description: " Crud.",
+    description: " CRUD Full Stack con React y MySQL",
     image: "/projects/crud.webp",
     tags: ["React", "TailwindCSS", "My-own-API"],
     demoUrl: "https://frontend-crud-mysql-express-client.vercel.app/",
