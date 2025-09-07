@@ -20,7 +20,6 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
 
-      // Detectar sección activa
       const sections = navItems.map((item) => item.href.substring(1));
       const current = sections.find((section) => {
         const element = document.getElementById(section);

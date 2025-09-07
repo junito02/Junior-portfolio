@@ -25,14 +25,14 @@ const projectsData = [
   },
   {
     id: 2,
-    title: "App News",
+    title: "MLB Project",
     description:
-      "A responsive news application built with React and News API. Real-time news updates with category filtering and search functionality.",
-    image: "/projects/News.webp",
-    tags: ["React", "TailwindCSS", "News API"],
-    demoUrl: "https://app-news-one.vercel.app/",
-    githubUrl: "https://github.com/junito02/App-news",
-    category: "Web App",
+      "A responsive MLB project built with HTML, CSS, and JavaScript. Features include  team statistics, and player profiles.",
+    image: "/projects/mlb.webp",
+    tags: ["Html", "Css", "Javascript"],
+    demoUrl: "https://mlb-project-eight.vercel.app/",
+    githubUrl: "https://github.com/junito02/MLB-project",
+    category: " MLB Project",
     featured: false,
   },
   {
