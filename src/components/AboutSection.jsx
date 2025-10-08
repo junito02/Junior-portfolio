@@ -72,8 +72,8 @@ export const AboutSection = () => {
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                target="_blank"
                 href="/Junior-Alejandro-CV.pdf"
+                download="Junior-Alejandro-CV.pdf"
                 className="px-6 py-3 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 flex items-center justify-center gap-2"
               >
                 Download CV
